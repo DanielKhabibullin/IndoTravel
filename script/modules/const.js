@@ -1,12 +1,2 @@
 export const heroText = document.querySelector('.hero__text');
 export const heroTimer = document.querySelector('.hero__timer');
-export const countDays = document.querySelector('.timer__count_days');
-export const countHours = document.querySelector('.timer__count_hours');
-export const countMinutes = document.querySelector('.timer__count_minutes');
-export const countSeconds = document.querySelector('.timer__count_seconds');
-export const unitsDays = document.querySelector('.timer__units_days');
-export const unitsHours = document.querySelector('.timer__units_hours');
-export const unitsMinutes = document.querySelector('.timer__units_minutes');
-export const unitsSeconds = document.querySelector('.timer__units_seconds');
-export const itemSeconds = document.querySelector('.timer__item_seconds');
-export const itemDays = document.querySelector('.timer__item_days');
