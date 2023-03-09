@@ -7,3 +7,6 @@ export const accTextWrapper = document
 
 export const burgerButton = document.querySelector('.header__menu-button');
 export const burgerMenu = document.querySelector('.header__menu');
+export const menuItems = document.
+	querySelectorAll('.header__menu .header__list .header__item');
+
