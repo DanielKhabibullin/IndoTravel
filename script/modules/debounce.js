@@ -1,8 +1,7 @@
-const debounce = (fn, raf = NaN) => (...args) => {
-	if (raf) return;
+export const debounce = (fn, raf = NaN) => (...args) => {
+	if (raf) cancelAnimationFrame(raf);
 	raf = requestAnimationFrame(() => {
 		fn(...args);
-		raf = NaN;
 	});
 };
 

@@ -1,3 +1,5 @@
+import {debounce} from './debounce.js';
+
 if (window.innerWidth >= 758) {
 	const fly = document.createElement('div');
 	const docEl = document.documentElement;
@@ -11,21 +13,29 @@ if (window.innerWidth >= 758) {
 	bottom: 0;
 	pointer-events: none;
 	background: url('../img/airplane.svg') center/contain no-repeat;
+	transform: translateY(0);
+	transition: transform 0.5s ease-out;
 	`;
 	document.body.append(fly);
+
+	let lastScrollPos = window.pageYOffset;
 
 	const calcPositionFly = () => {
 		const maxTop = docEl.clientHeight - fly.clientHeight;
 		const maxScroll = docEl.scrollHeight - docEl.clientHeight;
 		const percentScroll = (window.pageYOffset * 100) / maxScroll;
-
 		const top = maxTop * (percentScroll / 100);
 		fly.style.transform = `translateY(${-top}px)`;
+
+		fly.style.transform = `translateY(${-top}px)${window.pageYOffset <
+			lastScrollPos ? ' rotate(180deg)' : ''}`;
+		lastScrollPos = window.pageYOffset;
 	};
 
-	window.addEventListener('scroll', () => {
-		requestAnimationFrame(calcPositionFly);
-	});
+	const handleScroll = () => {
+		debounce(calcPositionFly)();
+	};
+	window.addEventListener('scroll', handleScroll);
 
 	calcPositionFly();
 }
