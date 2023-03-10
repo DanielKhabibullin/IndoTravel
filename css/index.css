@@ -421,6 +421,7 @@ html {
 		position: relative;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
+		scroll-behavior: smooth;
 }
 
 *,
@@ -955,6 +956,8 @@ p {
 
 .travel__item_active {
 		padding-left: 110px;
+		height: auto;
+		overflow: visible;
 }
 
 .travel__item:before {
