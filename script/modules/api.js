@@ -8,13 +8,13 @@ export const loadDates = async (cb) => {
 	cb(data);
 };
 
-export const renderDates = ((err, data) => {
-	if (err) {
-		console.warn(err, data);
-		reservationData.textContent = `Что-то пошло не так`;
-		reservationPrice.textContent = '';
-		return;
-	}
+export const renderDates = data => {
+	// if (err) {
+	// 	console.warn(err, data);
+	// 	reservationData.textContent = `Что-то пошло не так`;
+	// 	reservationPrice.textContent = '';
+	// 	return;
+	// }
 	dateSelects[0].innerHTML = `
 	<option value="" class="tour__option">Выбери дату</option>
 	`;
@@ -97,4 +97,5 @@ export const renderDates = ((err, data) => {
 			});
 		});
 	}
-});
+};
+

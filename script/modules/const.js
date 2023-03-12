@@ -15,4 +15,4 @@ export const reservationPrice = document.querySelector('.reservation__price');
 export const dateSelects = document.querySelectorAll('[name="dates"]');
 export const peopleSelects = document.querySelectorAll('[name="people"]');
 
-export const URL = './date.json';
+export const URL = 'https://jsonplaceholder.typicode.com/posts';

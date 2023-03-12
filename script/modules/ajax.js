@@ -1,9 +1,8 @@
-// import {renderDates} from './api.js';
 import {reservationData, reservationForm,
 	reservationPrice, URL} from './const.js';
 
-export const httpRequest = (url, {
-	method = 'get',
+const httpRequest = (url, {
+	method = 'GET',
 	callback,
 	body = {},
 	headers,
@@ -36,31 +35,31 @@ export const httpRequest = (url, {
 	}
 };
 
-export const fetchRequest = async (url, {
-	method = 'get',
-	callback,
-	body = {},
-	headers,
-}) => {
-	try {
-		const options = {
-			method,
-		};
+// export const fetchRequest = async (url, {
+// 	method = 'get',
+// 	callback,
+// 	body = {},
+// 	headers,
+// }) => {
+// 	try {
+// 		const options = {
+// 			method,
+// 		};
 
-		if (body) options.body = JSON.stringify(body);
-		if (headers) options.headers = headers;
+// 		if (body) options.body = JSON.stringify(body);
+// 		if (headers) options.headers = headers;
 
-		const response = await fetch(url, options);
-		if (response.ok) {
-			const data = await response.json();
-			if (callback) callback(null, data);
-			return;
-		}
-		throw new Error(`Ошибка: ${response.statusText}`);
-	} catch (err) {
-		callback(err);
-	}
-};
+// 		const response = await fetch(url, options);
+// 		if (response.ok) {
+// 			const data = await response.json();
+// 			if (callback) callback(null, data);
+// 			return;
+// 		}
+// 		throw new Error(`Ошибка: ${response.statusText}`);
+// 	} catch (err) {
+// 		callback(err);
+// 	}
+// };
 
 // fetchRequest(URL, {
 // 	metod: 'get',
@@ -70,7 +69,7 @@ export const fetchRequest = async (url, {
 reservationForm.addEventListener('submit', e => {
 	e.preventDefault();
 
-	fetchRequest('https://jsonplaceholder.typicode.com/posts', {
+	httpRequest(URL, {
 		method: 'POST',
 		body: {
 			date: reservationForm.dates.value,
@@ -82,9 +81,10 @@ reservationForm.addEventListener('submit', e => {
 			if (err) {
 				console.warn(err, data);
 				reservationData.textContent = `Что-то пошло не так`;
+				reservationData.style.color = `red`;
 				reservationPrice.textContent = '';
 			}
-			reservationData.textContent = `Поздравляем с бронированием тура. Менеджер Вам перезвонит в ближайшее время. Номер заявки ${data.id}.`;
+			reservationData.textContent = `Заявка отправлена, номер заявки ${data.id}.`;
 			reservationPrice.textContent = '';
 		},
 		headers: {
