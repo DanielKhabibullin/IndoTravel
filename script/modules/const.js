@@ -16,3 +16,8 @@ export const dateSelects = document.querySelectorAll('[name="dates"]');
 export const peopleSelects = document.querySelectorAll('[name="people"]');
 
 export const URL = 'https://jsonplaceholder.typicode.com/posts';
+
+export const footerForm = document.querySelector('.footer__form');
+export const footerFormTitle = document.querySelector('.footer__form-title');
+export const footerText = document.querySelector('.footer__text');
+
