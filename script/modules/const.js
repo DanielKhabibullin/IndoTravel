@@ -15,9 +15,10 @@ export const reservationPrice = document.querySelector('.reservation__price');
 export const dateSelects = document.querySelectorAll('[name="dates"]');
 export const peopleSelects = document.querySelectorAll('[name="people"]');
 
-export const URL = 'https://jsonplaceholder.typicode.com/posts';
+export const URL = 'https://jsonplaceholder.typicode.com/postss';
 
 export const footerForm = document.querySelector('.footer__form');
+export const footerFormInput = document.querySelector('.footer__input-wrap');
 export const footerFormTitle = document.querySelector('.footer__form-title');
 export const footerText = document.querySelector('.footer__text');
 

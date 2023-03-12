@@ -1,5 +1,5 @@
-import {footerForm, footerFormTitle, footerText,
-	reservationData, reservationForm, reservationPrice} from './const.js';
+import {footerForm, footerFormInput, footerFormTitle, footerText,
+	reservationData, reservationForm, reservationPrice, URL} from './const.js';
 
 const httpRequest = (url, {
 	method = 'GET',
@@ -83,9 +83,11 @@ reservationForm.addEventListener('submit', e => {
 				reservationData.textContent = `Что-то пошло не так`;
 				reservationData.style.color = `red`;
 				reservationPrice.textContent = '';
+			} else {
+				reservationData.textContent =
+				`Заявка отправлена, номер заявки ${data.id}`;
+				reservationPrice.textContent = '';
 			}
-			reservationData.textContent = `Заявка отправлена, номер заявки ${data.id}.`;
-			reservationPrice.textContent = '';
 		},
 		headers: {
 			'Content-Type': 'application/json',
@@ -107,9 +109,13 @@ footerForm.addEventListener('submit', e => {
 				footerFormTitle.style.color = `red`;
 				footerFormTitle.textContent = `Что-то пошло не так`;
 				footerText.textContent = 'Попробуйте еще раз';
+				footerForm.reset();
+			} else {
+				footerFormTitle.textContent = `Ваша заявка успешно отправлена`;
+				footerText.textContent =
+				'Наши менеджеры свяжутся с Вами в течение 3-х рабочих дней';
+				footerFormInput.remove();
 			}
-			footerFormTitle.textContent = `Ваша заявка успешно отправлена.`;
-			footerText.textContent = 'Наши менеджеры свяжутся с Вами в течение 3-х рабочих дней.';
 		},
 		headers: {
 			'Content-Type': 'application/json',
