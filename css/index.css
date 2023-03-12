@@ -1010,6 +1010,7 @@ p {
 		font-size: 18px;
 		line-height: 150%;
 		padding: 20px 0;
+		max-width: 470px;
 }
 
 

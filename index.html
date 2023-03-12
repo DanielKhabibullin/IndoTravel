@@ -263,11 +263,11 @@
           <div class="reservation__contacts">
             <div class="reservation__input-wrap">
               <label for="reservation__name" class="reservation__label">ФИО</label>
-              <input required type="text" class="reservation__input reservation__input_name" id="reservation__name" placeholder="Введите ваше ФИО">
+              <input required type="text" class="reservation__input reservation__input_name" id="reservation__name" name="reservation__name" placeholder="Введите ваше ФИО">
             </div>
             <div class="reservation__input-wrap">
               <label for="reservation__phone" class="reservation__label">Телефон</label>
-              <input required type="text" class="reservation__input" id="reservation__phone" placeholder="Введите номер телефона">
+              <input required type="tel" class="reservation__input" id="reservation__phone" name="reservation__phone" placeholder="Введите номер телефона" pattern="[0-9+-]*">
             </div>
           </div>
           <div class="reservation__bottom">

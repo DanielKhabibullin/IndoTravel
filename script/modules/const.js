@@ -9,4 +9,10 @@ export const burgerButton = document.querySelector('.header__menu-button');
 export const burgerMenu = document.querySelector('.header__menu');
 export const menuItems = document.
 	querySelectorAll('.header__menu .header__list .header__item');
+export const reservationForm = document.querySelector('.reservation__form');
+export const reservationData = document.querySelector('.reservation__data');
+export const reservationPrice = document.querySelector('.reservation__price');
+export const dateSelects = document.querySelectorAll('[name="dates"]');
+export const peopleSelects = document.querySelectorAll('[name="people"]');
 
+export const URL = './date.json';
