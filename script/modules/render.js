@@ -89,7 +89,8 @@ export const renderDates = data => {
 									selectedPrice = item.price;
 								}
 							});
-							const totalPrice = selectedPeople * selectedPrice;
+							let totalPrice = 0;
+							totalPrice = selectedPeople * selectedPrice;
 							reservationPrice.textContent = `${totalPrice}₽`;
 						});
 					});
