@@ -4,9 +4,9 @@ const durationOpacity = 300;
 
 let left = 0;
 
-const overlay = document.createElement('div');
+const overlayFly = document.createElement('div');
 
-overlay.style.cssText = `
+overlayFly.style.cssText = `
 	position: fixed;
 	z-index = 999;
 	top: 0;
@@ -28,19 +28,19 @@ pointer-events: none;
 background: url('../img/airplane90deg.svg') center/contain no-repeat;
 `;
 
-overlay.append(fly);
-document.body.append(overlay);
+overlayFly.append(fly);
+document.body.append(overlayFly);
 
 const hideOverlay = (timestamp) => {
 	startTime ||= timestamp;
 	const progress = (timestamp - startTime) / durationOpacity;
 
-	overlay.style.opacity = 1 - progress;
+	overlayFly.style.opacity = 1 - progress;
 
 	if (progress < 1) {
 		requestAnimationFrame(hideOverlay);
 	} else {
-		overlay.remove();
+		overlayFly.remove();
 	}
 };
 

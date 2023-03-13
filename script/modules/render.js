@@ -1,26 +1,21 @@
 import {dateSelects, peopleSelects, reservationData,
 	reservationPrice} from './const.js';
 
-export const loadDates = async (cb) => {
-	const result = await fetch('date.json');
-
-	const data = await result.json();
-	cb(data);
-};
-
-export const renderDates = data => {
-	// if (err) {
-	// 	console.warn(err, data);
-	// 	reservationData.textContent = `Что-то пошло не так`;
-	// 	reservationPrice.textContent = '';
-	// 	return;
-	// }
+export const renderDates = (err, data) => {
+	if (err) {
+		console.warn(err, data);
+		reservationData.textContent = `Что-то пошло не так`;
+		reservationPrice.textContent = '';
+		return;
+	}
 	dateSelects[0].innerHTML = `
 	<option value="" class="tour__option">Выбери дату</option>
 	`;
 	dateSelects[1].innerHTML = `
 	<option value="" class="tour__option">Дата путешествия</option>
 	`;
+	dateSelects[0].options[0].disabled = true;
+	dateSelects[1].options[0].disabled = true;
 
 	peopleSelects.forEach(peopleSelect => {
 		peopleSelect.innerHTML = `
@@ -49,6 +44,8 @@ export const renderDates = data => {
 						peopleSelect.innerHTML = `
 						<option value="" class="tour__option">Количество человек</option>
 						`;
+						peopleSelects[0].options[0].disabled = true;
+						peopleSelects[1].options[0].disabled = true;
 						for (let i = minPeople; i <= maxPeople; i++) {
 							const peopleOption = document.createElement('option');
 							peopleOption.value = i;
@@ -80,8 +77,9 @@ export const renderDates = data => {
 								}
 								return `${num} ${word}`;
 							};
-							reservationData.textContent = `${startFormatted} - ${
-								endFormatted}, ${formatPeople(selectedPeople)}`;
+							reservationData.textContent =
+							`${startFormatted} - ${endFormatted}, ${
+								formatPeople(selectedPeople)}`;
 
 							let selectedPrice;
 							data.forEach(item => {
@@ -98,5 +96,6 @@ export const renderDates = data => {
 			});
 		});
 	}
+	return true;
 };
 

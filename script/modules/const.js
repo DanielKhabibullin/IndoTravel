@@ -22,3 +22,10 @@ export const footerFormInput = document.querySelector('.footer__input-wrap');
 export const footerFormTitle = document.querySelector('.footer__form-title');
 export const footerText = document.querySelector('.footer__text');
 
+export const styles = new Map();
+
+export const reservationInputName =
+document.querySelector('.reservation__input_name');
+
+export const reservationInputPhone =
+document.querySelector('.reservation__input_phone');

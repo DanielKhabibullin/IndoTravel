@@ -1,4 +1,4 @@
-/* .overlay {
+.overlay {
 	position: fixed;
 	inset: 0;
 	z-index: 100;
@@ -60,4 +60,4 @@
 .modal__btn:focus {
 	outline: 1px solid #FCB500;
 	outline-offset: 5px;
-} */
+}
