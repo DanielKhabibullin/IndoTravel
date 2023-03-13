@@ -1,6 +1,5 @@
 import {footerForm, footerFormInput, footerFormTitle, footerText,
-	reservationData, reservationForm, reservationInputName,
-	reservationPrice, URL} from './const.js';
+	reservationForm, URL} from './const.js';
 import {modalShow} from './modal.js';
 import {renderDates} from './render.js';
 
@@ -77,38 +76,11 @@ export const getDates = async () => {
 reservationForm.addEventListener('submit', async (e) => {
 	e.preventDefault();
 
-	const checkReservation = await fetchRequest(URL, {
-		method: 'POST',
-		body: {
-			date: reservationData.textContent,
-			qty: reservationForm.people.value,
-			name: reservationForm.reservation__name.value,
-			phone: reservationForm.reservation__phone.value,
-			price: reservationPrice.textContent,
-		},
-		callback(err, data) {
-			if (err) {
-				console.warn(err, data);
-				modalShow(err, data);
-				reservationData.textContent = `Что-то пошло не так`;
-				reservationData.style.color = `red`;
-				reservationPrice.textContent = '';
-				document.body.style.overflow = 'hidden';
-			} else {
-				modalShow(err, data);
-				reservationPrice.textContent = '';
-				reservationData.textContent =
-				`Заявка отправлена, номер заявки ${data.id}`;
-				document.body.style.overflow = 'hidden';
-			}
-		},
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
-	if (checkReservation) {
-		console.log('checkReservation: ', checkReservation);
-	}
+	const formData = new FormData(reservationForm);
+	const reservation = Object.fromEntries(formData);
+	console.log('reservation: ', reservation);
+
+	modalShow(null, reservation);
 });
 
 footerForm.addEventListener('submit', e => {
