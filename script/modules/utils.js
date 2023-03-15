@@ -10,6 +10,16 @@ export const formatPeople = num => {
 	return `${num} ${word}`;
 };
 
+export const formatPeople1 = num => {
+	let word = '';
+	if (num >= 1 && num <= 4) {
+		word = 'человека';
+	} else {
+		word = 'человек';
+	}
+	return `${num} ${word}`;
+};
+
 export const formatDate = (date) => {
 	const [startDate, endDate] = date.split(' - ');
 	const startParts = startDate.split('.');

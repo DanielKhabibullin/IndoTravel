@@ -1,8 +1,30 @@
-import {dateSelects, peopleSelects, reservationData,
+import {dateSelects, peopleSelects, reservationButton, reservationData,
 	reservationPrice} from './const.js';
-import { formatDate, formatPeople } from './utils.js';
+import {formatDate, formatPeople} from './utils.js';
+
 
 export const renderDates = (err, data) => {
+	const allOptionsSelected = () => {
+		for (const dateSelect of dateSelects) {
+			if (!dateSelect.selectedOptions[0]) {
+				return false;
+			}
+		}
+		for (const peopleSelect of peopleSelects) {
+			if (!peopleSelect.selectedOptions[0]) {
+				return false;
+			}
+		}
+		return true;
+	};
+	const updateReservationButton = () => {
+		if (allOptionsSelected()) {
+			reservationButton.disabled = false;
+		} else {
+			reservationButton.disabled = true;
+		}
+	};
+
 	if (err) {
 		console.warn(err, data);
 		reservationData.textContent = `Что-то пошло не так`;
@@ -36,6 +58,7 @@ export const renderDates = (err, data) => {
 
 			dateSelects.forEach(dateSelect => {
 				dateSelect.addEventListener('change', function() {
+					reservationButton.disabled = true;
 					const selectedDate = this.value;
 					const selectedDateItem = data.find(item => item.date ===
 						selectedDate);
@@ -55,6 +78,7 @@ export const renderDates = (err, data) => {
 							peopleSelect.appendChild(peopleOption);
 						}
 						peopleSelect.addEventListener('change', function() {
+							updateReservationButton();
 							const selectedPeople = this.value;
 							const formatedDate = formatDate(selectedDate);
 							reservationData.textContent =

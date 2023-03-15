@@ -29,3 +29,5 @@ document.querySelector('.reservation__input_name');
 
 export const reservationInputPhone =
 document.querySelector('.reservation__input_phone');
+
+export const reservationButton = document.querySelector('.reservation__button');

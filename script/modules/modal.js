@@ -1,7 +1,7 @@
-import {reservationForm, URL} from './const.js';
+import {dateSelects, peopleSelects, reservationData, reservationForm, URL} from './const.js';
 import {loadStyle} from './loadStyle.js';
 import {fetchRequest} from './sendForms.js';
-import { formatDate, formatPeople } from './utils.js';
+import {formatDate, formatPeople1} from './utils.js';
 
 const reservationPrice = document.querySelector('.reservation__price');
 
@@ -16,7 +16,7 @@ export const modalShow = async (err, data) => {
 	const modalButtons = document.createElement('div');
 	const modalButtonConfirm = document.createElement('button');
 	const modalButtonEdit = document.createElement('button');
-	// const [dates, qty] = date.split(', ');
+
 
 	overlay.append(modal);
 	overlay.classList.add('overlay');
@@ -30,7 +30,7 @@ export const modalShow = async (err, data) => {
 	modalButtonEdit.classList.add('modal__btn', 'modal__btn_edit');
 	modalText1.textContent =
 		`Бронирование путешествия в Индонезию на ${
-			formatPeople(data.people)}`;
+			formatPeople1(data.people)}`;
 	modalText2.textContent = `В даты: ${formatDate(data.dates)}`;
 	modalText3.textContent = `Стоимость тура ${reservationPrice.textContent}`;
 	modalButtonConfirm.textContent = 'Подтверждаю';
@@ -59,6 +59,10 @@ export const modalShow = async (err, data) => {
 					} else {
 						overlay.remove();
 						reservationForm.reset();
+						dateSelects[1].selectedIndex = 0;
+						peopleSelects[1].selectedIndex = 0;
+						reservationData.textContent = `Выберите дату и количество человек`;
+						reservationPrice.textContent = `0₽`;
 						document.body.style.overflow = 'auto';
 						reservationForm.querySelectorAll('input').forEach(item => {
 							item.disabled = true;

@@ -1,4 +1,5 @@
 import {footerForm, footerFormInput, footerFormTitle, footerText,
+	reservationButton,
 	reservationForm, URL} from './const.js';
 import {modalShow} from './modal.js';
 import {renderDates} from './render.js';
@@ -70,6 +71,7 @@ export const getDates = async () => {
 	});
 	if (result) {
 		console.log('success');
+		reservationButton.disabled = true;
 	}
 };
 
@@ -78,7 +80,6 @@ reservationForm.addEventListener('submit', async (e) => {
 
 	const formData = new FormData(reservationForm);
 	const reservation = Object.fromEntries(formData);
-	console.log('reservation: ', reservation);
 
 	modalShow(null, reservation);
 });
