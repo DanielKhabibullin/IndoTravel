@@ -1,4 +1,5 @@
-import {dateSelects, peopleSelects, reservationData, reservationForm, URL} from './const.js';
+import {dateSelects, peopleSelects, reservationData,
+	reservationForm, URL} from './const.js';
 import {loadStyle} from './loadStyle.js';
 import {fetchRequest} from './sendForms.js';
 import {formatDate, formatPeople1} from './utils.js';
@@ -73,6 +74,14 @@ export const modalShow = async (err, data) => {
 					}
 				},
 			});
+		});
+
+		overlay.addEventListener('click', e => {
+			if (e.target === overlay) {
+				overlay.remove();
+				document.body.style.overflow = 'auto';
+				resolve();
+			}
 		});
 
 		modalButtonEdit.addEventListener('click', () => {
