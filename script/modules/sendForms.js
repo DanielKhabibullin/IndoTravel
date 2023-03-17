@@ -1,6 +1,6 @@
 import {footerForm, footerFormInput, footerFormTitle, footerText,
 	reservationButton,
-	reservationForm, URL} from './const.js';
+	reservationForm, reservationInputName, reservationInputPhone, URL} from './const.js';
 import {modalShow} from './modal.js';
 import {renderDates} from './render.js';
 
@@ -81,7 +81,13 @@ reservationForm.addEventListener('submit', async (e) => {
 	const formData = new FormData(reservationForm);
 	const reservation = Object.fromEntries(formData);
 
-	modalShow(null, reservation);
+	const wordsCount = reservationInputName.trim().split(/\s+/).length;
+
+	if (wordsCount >= 3) {
+		modalShow(null, reservation);
+	} else {
+		alert('Поле ФИО должно содержать по меньшей мере 3 слова');
+	}
 });
 
 footerForm.addEventListener('submit', e => {
@@ -111,4 +117,14 @@ footerForm.addEventListener('submit', e => {
 			'Content-Type': 'application/json',
 		},
 	});
+});
+
+reservationInputName.addEventListener('input', () => {
+	reservationInputName.value = reservationInputName.
+		value.replace(/[^А-Яа-яЁё\s]/, '');
+});
+
+reservationInputPhone.addEventListener('input', () => {
+	reservationInputPhone.value = reservationInputPhone.
+		value.replace(/[^0-9+]/, '');
 });
