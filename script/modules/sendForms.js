@@ -1,6 +1,6 @@
 import {footerForm, footerFormInput, footerFormTitle, footerText,
-	reservationButton,
-	reservationForm, reservationInputName, reservationInputPhone, URL} from './const.js';
+	reservationButton, reservationForm, reservationInputName,
+	reservationInputPhone, URL} from './const.js';
 import {modalShow} from './modal.js';
 import {renderDates} from './render.js';
 
@@ -80,8 +80,7 @@ reservationForm.addEventListener('submit', async (e) => {
 
 	const formData = new FormData(reservationForm);
 	const reservation = Object.fromEntries(formData);
-
-	const wordsCount = reservationInputName.trim().split(/\s+/).length;
+	const wordsCount = reservationInputName.value.trim().split(/\s+/).length;
 
 	if (wordsCount >= 3) {
 		modalShow(null, reservation);
@@ -128,3 +127,5 @@ reservationInputPhone.addEventListener('input', () => {
 	reservationInputPhone.value = reservationInputPhone.
 		value.replace(/[^0-9+]/, '');
 });
+
+console.log('reservationInputName: ', reservationInputName);
