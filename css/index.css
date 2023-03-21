@@ -1,5 +1,5 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-
+@import '../node_modules/swiper/swiper.css';
 /* Document
    ========================================================================== */
 
@@ -161,6 +161,7 @@ sup {
 
 img {
 		border-style: none;
+		margin: 0;
 }
 
 /* Forms
@@ -1476,6 +1477,10 @@ p {
 
 .album {
 		padding: 75px 0;
+}
+
+.album__container {
+	position: relative;
 }
 
 .album__slider {

@@ -70,7 +70,6 @@ export const getDates = async () => {
 		callback: renderDates,
 	});
 	if (result) {
-		console.log('success');
 		reservationButton.disabled = true;
 	}
 };
@@ -81,6 +80,12 @@ reservationForm.addEventListener('submit', async (e) => {
 	const formData = new FormData(reservationForm);
 	const reservation = Object.fromEntries(formData);
 	const wordsCount = reservationInputName.value.trim().split(/\s+/).length;
+
+	// const phone = reservationInputPhone.inputmask.unmaskedvalue();
+	// if (!phone || phone.length !== 10) {
+	// 	alert('Пожалуйста, введите корректный номер телефона');
+	// 	return;
+	// }
 
 	if (wordsCount >= 3) {
 		modalShow(null, reservation);
@@ -123,9 +128,33 @@ reservationInputName.addEventListener('input', () => {
 		value.replace(/[^А-Яа-яЁё\s]/, '');
 });
 
+const telMask = new Inputmask('+7 (999) 999-99-99');
+telMask.mask(reservationInputPhone);
+
 reservationInputPhone.addEventListener('input', () => {
 	reservationInputPhone.value = reservationInputPhone.
 		value.replace(/[^0-9+]/, '');
 });
 
-console.log('reservationInputName: ', reservationInputName);
+const justValidate = new JustValidate('.reservation__form');
+justValidate
+	.addField('.reservation__input_name', [
+		{
+			rule: 'required',
+			errorMessage: 'Введите ваше ФИО',
+		},
+	])
+	.addField('.reservation__input_phone', [
+		{
+			rule: 'required',
+			errorMessage: 'Введите ваш телефон',
+		},
+		{
+			validator(value) {
+				const phone = reservationInputPhone.inputmask.unmaskedvalue();
+				console.log('phone: ', phone);
+				return !!(Number(phone) && phone.length === 10);
+			},
+			errorMessage: 'Телефон некорректный',
+		},
+	]);

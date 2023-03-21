@@ -4,6 +4,7 @@ import './modules/burger.js';
 import './modules/fly.js';
 import './modules/sendForms.js';
 import './modules/render.js';
+import './modules/swiper.js';
 import {getDates} from './modules/sendForms.js';
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -13,3 +14,4 @@ window.addEventListener('DOMContentLoaded', () => {
 	};
 	init();
 });
+
