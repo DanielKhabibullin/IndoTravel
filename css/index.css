@@ -1480,6 +1480,7 @@ p {
 }
 
 .album__container {
+	max-width: 1220px;
 	position: relative;
 }
 
@@ -1925,6 +1926,9 @@ p {
 		.container {
 				padding: 0 42px;
 		}
+		.album__container {
+			padding: 0 60px;
+	}
 
 		.section__title {
 				margin-bottom: 40px;
